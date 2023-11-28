@@ -13,10 +13,11 @@
 	<tbody>
 		{% for obj in object_list %}
 		<tr>
-			<td>
+      <td>
 				{{obj.name}}
 			</td>
 			<td>
+        <a href="{% url 'expenses:category-edit' obj.id %}">edit</a>
 				<a href="{% url 'expenses:category-delete' obj.id %}">delete</a>
 			</td>
 		</tr>
