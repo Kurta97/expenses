@@ -1,8 +1,24 @@
 from django import forms
-from .models import Expense
+from .models import Expense, Category
 
 
 class ExpenseSearchForm(forms.ModelForm):
+    date_from = forms.DateField(
+        required=False,
+        widget=forms.TextInput(attrs={'type': 'date'})
+        )
+
+    date_to = forms.DateField(
+        required=False,
+        widget=forms.TextInput(attrs={'type': 'date'})
+        )
+
+    category = forms.ModelMultipleChoiceField(
+        queryset=Category.objects.all(),
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
+
     class Meta:
         model = Expense
         fields = ('name',)
